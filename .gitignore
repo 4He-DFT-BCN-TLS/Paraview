@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+
+readwf-slurm*
+pvbatch-out*
+errors*
+report*
+slurm-*
+
+
