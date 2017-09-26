@@ -1,7 +1,7 @@
 #!/bin/bash
 #source /opt/intel/bin/compilervars.sh intel64
 
-# Call: ./draw-slurm-chdb.sh ../path/to/density.xxxx.dat output_directory
+# Call: ./draw-slurm-chdb.sh density.xxxx.dat path/to/he-wfs/ output-directory
 
 dt=0.5
 ID=${1##*density.}   # density.0001.dat => 0001.dat

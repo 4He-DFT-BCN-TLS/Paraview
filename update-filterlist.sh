@@ -3,13 +3,13 @@
 START=${1}
 FINISH=${2}
 
-rm -v ../density-chdb.in/filter.txt
+rm -v ../he-wfs/filter.txt
 for ID in  $(seq -w ${START} 1 ${FINISH})
 do
-	echo "density.${ID}.dat" >> ../density-chdb.in/filter.txt
+	echo "density.${ID}.dat" >> ../he-wfs/filter.txt
 done
 echo "New filter list created"
-N=$(cat ../density-chdb.in/filter.txt | wc -l)
+N=$(cat ../he-wfs/filter.txt | wc -l)
 echo "${N} entries in filter list"
 if ((N<180))
 then
