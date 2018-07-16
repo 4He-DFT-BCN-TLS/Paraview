@@ -5,11 +5,11 @@ complex(kind = 8), ALLOCATABLE	:: invar(:)			! Lambda (internal variables)
 Complex   (Kind=8), Allocatable :: Sto1c(:,:,:), Sto2c(:,:,:),Sto3c(:,:,:)
 Complex   (Kind=8), Allocatable :: DDxpsi2D(:,:), DDypsi2D(:,:), DDxypsi2D(:,:)
 Real      (Kind=8), Allocatable :: den0(:,:,:), x0(:), y0(:), z0(:), den2D(:,:),x(:), y(:), z(:), Wx(:), Wy(:), &  
-                                   x0v(:), y0v(:), xv(:), yv(:)
+                                   x0v(:), y0v(:), xv(:), yv(:), rimp(:,:), vimp(:,:)
                                
 Integer   (Kind=4) :: nn(2), Icon=13, nnn(3), i_minloc(2)
 integer (kind=4)	:: denmode = 42
-integer (kind = 4)	:: ninvar			! Number of components of lambda
+integer (kind = 4)	:: ninvar, nimp			! Number of components of lambda
 Complex   (Kind=8) :: ci=(0.d0,1.d0), caux, caux1
 Character (len =1) :: cchar="#", Vortex_axis='Z'
 Logical            :: limp, L2Dplot=.false.,Ldensity=.true., Ldynamic=.false., L3Dplot=.false.,                 &
@@ -57,12 +57,19 @@ select case (denmode)
 		read(10,*) psi0
 		den0 = Conjg(psi0) * psi0
 	case (3)
-		read(10,*) xmax0,ymax0,zmax0,hx0,hy0,hz0,nx0,ny0,nz0,ximp,yimp,zimp,vximp,vyimp,vzimp
+		read(10,*) xmax0,ymax0,zmax0,hx0,hy0,hz0,nx0,ny0,nz0,nimp
+		write(*,*) "Number of impurities: ", nimp
+		Allocate(rimp(nimp,3))
+		Allocate(vimp(nimp,3))
 		Allocate(x0(nx0))
 		Allocate(y0(ny0))
 		Allocate(z0(nz0))
 		Allocate(den0(nx0,ny0,nz0))
 		Allocate(psi0(nx0,ny0,nz0))
+		read(10,*) rimp
+		write(*,*) rimp
+		read(10,*) vimp
+		write(*,*) vimp
 		read(10,*) psi0
 		den0 = Conjg(psi0) * psi0
 	case (4)
