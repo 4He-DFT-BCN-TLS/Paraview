@@ -16,7 +16,15 @@ export OMP_NUM_THREADS=1
 export WORKDIR=$(pwd)
 cd ${WORKDIR}
 
-mpirun chdb --in-dir=../he-wfs --in-files ../he-wfs/filter.txt --out-dir pvbatch-out.${SLURM_JOBID} --in-type dat --command-line './draw-slurm-chdb.sh %name% %in-dir% %out-dir%' --out-files %name% --on-error=errors.${SLURM_JOBID} --report=report.${SLURM_JOBID}
+mpirun chdb \
+	--in-dir=../he-wfs \
+	--in-files ../he-wfs/filter.txt \
+	--out-dir pvbatch-out.${SLURM_JOBID} \
+	--in-type dat \
+	--command-line './draw-slurm-chdb.sh %name% %in-dir% %out-dir%' \
+	--out-files %name% \
+	--on-error=errors.${SLURM_JOBID} \
+	--report=report.${SLURM_JOBID}
 
 infoincidentjob
 jobinfo ${SLURM_JOB_ID}
