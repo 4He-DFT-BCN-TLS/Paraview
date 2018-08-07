@@ -1,0 +1,25 @@
+sphere1 = Sphere()
+sphere1.Center = [40.0, 1.0, 2.0]
+sphere1.Radius = 2.0
+sphere1.ThetaResolution = 128
+sphere1.PhiResolution = 128
+sphere1Display = Show(sphere1, renderView1)
+sphere1Display.Representation = 'Surface'
+sphere1Display.ColorArrayName = [None, '']
+sphere1Display.OSPRayScaleArray = 'Normals'
+sphere1Display.OSPRayScaleFunction = 'PiecewiseFunction'
+sphere1Display.SelectOrientationVectors = 'None'
+sphere1Display.ScaleFactor = 0.4
+sphere1Display.SelectScaleArray = 'None'
+sphere1Display.GlyphType = 'Arrow'
+sphere1Display.GlyphTableIndexArray = 'None'
+sphere1Display.DataAxesGrid = 'GridAxesRepresentation'
+sphere1Display.PolarAxes = 'PolarAxesRepresentation'
+sphere1Display.GaussianRadius = 0.2
+sphere1Display.SetScaleArray = [None, '']
+sphere1Display.ScaleTransferFunction = 'PiecewiseFunction'
+sphere1Display.OpacityArray = [None, '']
+sphere1Display.OpacityTransferFunction = 'PiecewiseFunction'
+sphere1Display.DiffuseColor = [0.6666666666666666, 1.0, 0.0]
+sphere1Display.Specular = 1.0
+

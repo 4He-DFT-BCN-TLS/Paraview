@@ -4,15 +4,15 @@
  nv=2
  xlv=-20.d0,xrv=20.d0,ylv=-20.d0,yrv=20.d0
  Vortex_axis='Z'
- File10='../he-wfs/density.310.dat'
+ File10='../he-wfs/density.0158.dat'
  File31='position.dat'
  File41='denxyz.vtk'
- denmode=4 
+ denmode=3
  Ldynamic=.false.
  Ldynamic=.true.
  L2Dplot=.true.
  L3Dplot=.true.
- nx=192,  ny=192,  nz=256
+ nx=320,  ny=320,  nz=320
  xi= -8.5d0, xf=8.5d0
  yi= -2.5d0, yf=2.5d0
  epsrho=1.d-4

@@ -17,7 +17,7 @@ Logical            :: limp, L2Dplot=.false.,Ldensity=.true., Ldynamic=.false., L
                       Lvortex_position_as_a_function_of_z=.false.,L_3D_filter=.false.
 Character (len=80) :: File5='readwf.dat', File6='readwf.res', File31='position.dat', File32='velocity.dat'
 Character (len=80) :: File7='denxy.dat', File8='current.out',File10='den.inp',File9='vortex_position.out',      &
-                      File11='denxz.dat',File12='denyz.dat',File13='angular_momentum.dat', File15='Q2.out'
+                      File11='denxz.dat',File12='denyz.dat',File13='angular_momentum.dat', File15='Q2.out', nimpFile='nimp.dat'
 Character (len=80) :: File20='denxy.vtk',File21='denxz.vtk',File22='denyz.vtk',File23='current.vtk',File41='denxyz.vtk'
 Data nx/436/, ny/436/, nz/436/, hx/-1.d0/, hy/-1.d0/, hz/-1.d0/, npd/13/,Km1/4/, ndmax/2/, nthread/4/, npi/4/
 Data fac/158.66624d0/,epsrho/1.d-6/,drop_radius/15.6d0/  !drop_radius = 2.2*N_He**(1/3)/Sqrt(2)
@@ -67,9 +67,7 @@ select case (denmode)
 		Allocate(den0(nx0,ny0,nz0))
 		Allocate(psi0(nx0,ny0,nz0))
 		read(10,*) rimp
-		write(*,*) rimp
 		read(10,*) vimp
-		write(*,*) vimp
 		read(10,*) psi0
 		den0 = Conjg(psi0) * psi0
 	case (4)
@@ -97,8 +95,14 @@ close(10)
 
 !! HERE STOPS THE WAVE FUNCTION READING
 
-Write(31,'(1p,3E18.10)')ximp,yimp,zimp
+do ix=1,nimp
+	Write(31,'(F9.5,1X,F9.5,1X,F9.5)') rimp(ix,1), rimp(ix,2), rimp(ix,3)
+enddo
 Close(31)
+
+Open(314,File=nimpFile, buffered='yes')
+	write(314,*) nimp
+close(314)
 
 dxyz0=hx0*hy0*hz0
 dxyz=dxyz0

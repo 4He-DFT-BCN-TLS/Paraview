@@ -36,5 +36,6 @@ pvbatch-out*
 errors*
 report*
 slurm-*
-
-
+*.vtk
+nimp.dat
+position.dat
