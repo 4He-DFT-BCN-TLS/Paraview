@@ -1,23 +1,23 @@
 #!/bin/bash
-#source /opt/intel/bin/compilervars.sh intel64 ## Only uncomment on a Mac
-
+#
 ### Script assumes 'output-directory' has been created before execution
 ### CALL:	./draw-slurm-chdb.sh density.xxxx.dat path/to/he-wfs/ output-directory
 ### EXMPL:	./draw-slurm-chdb.sh density.005.dat ../he-wfs test
 
+#source /opt/intel/bin/compilervars.sh intel64 ## Only uncomment on a Mac
+SED=sed			## 'sed' on Linux, 'gsed' on a Mac with Homebrew
 
-declare -a X
-declare -a Y
-declare -a Z
 
-dt=0.5
+DT=0.5
 ID=${1##*density.}	# density.0001.dat => 0001.dat
 ID=${ID%.dat}		# 0001.dat         => 0001
 INDIR=${2}
 OUTDIR=${3}
-SED=sed				# 'sed' on Linux, 'gsed' on a Mac with Homebrew
 HEIGHT=1080			# Rescale the output image to this height
-printf -v t "%.1f" $(echo "${ID}*${dt}"|bc) # store current time in $t
+printf -v t "%.1f" $(echo "${ID}*${DT}"|bc) # store current time in $t
+declare -a X
+declare -a Y
+declare -a Z
 
 (cd ${OUTDIR}; mkdir denxyz_py impurity nimp readwf_dat readwf_err vtk xyz3Dplot 2> /dev/null)
 
