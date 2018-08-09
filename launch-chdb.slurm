@@ -4,12 +4,12 @@
 #SBATCH --ntasks-per-node=20
 #SBATCH --ntasks-per-core=1
 #SBATCH --cpus-per-task=1
-#SBATCH --time 0:10:0
+#SBATCH --time 0:30:0
 #SBATCH -J pvb-chdb
 
 module purge
-module load intel/16.1.3 intelmpi/5.1.3.210
-module load paraview/pvbatch-4.4.0
+module load intel/17.0.4 intelmpi/5.1.3.210
+module load paraview/pvbatch-5.4.1
 
 export I_MPI_WAIT_MODE=1
 export OMP_NUM_THREADS=1

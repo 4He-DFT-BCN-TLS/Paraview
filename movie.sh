@@ -1,6 +1,9 @@
 #!/bin/bash
 
 INDIR=${1}
-FPS=${2}
+FIRST_FRAME_NR=0
+FPS=15
+ID_WIDTH=4
 
-ffmpeg -start_number 120 -r ${FPS} -f image2 -i ${INDIR}/denxyz.%03d.png -vcodec libx264 -preset ultrafast -crf 18 -pix_fmt yuv420p movie-3D.mp4
+ffmpeg -start_number ${FIRST_FRAME_NR} -r ${FPS} -f image2 -i ${INDIR}/denxyz.%0${ID_WIDTH}d.png \
+	-vcodec libx264 -preset ultrafast -crf 18 -pix_fmt yuv420p Movie-3D.mp4

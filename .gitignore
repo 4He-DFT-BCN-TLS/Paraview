@@ -38,4 +38,5 @@ report*
 slurm-*
 *.vtk
 nimp.dat
-position.dat
+ignore*
+

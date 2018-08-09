@@ -7,6 +7,7 @@
  File10='../he-wfs/density.0158.dat'
  File31='position.dat'
  File41='denxyz.vtk'
+ nimpFile='nimp.dat'
  denmode=3
  Ldynamic=.false.
  Ldynamic=.true.

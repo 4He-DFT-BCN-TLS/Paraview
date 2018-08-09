@@ -28,7 +28,7 @@ Data X_P_filter/100.d0/,Y_P_filter/100.d0/,Z_P_filter/100.d0/, X_N_filter/-100.d
 Namelist/Input/File4,File6,File7,File8,File10,File11,File12,File13,L2Dplot,Ldynamic,xlv,xrv,ylv,yrv,nv,Lvortex_position,   &
 File20,File21,File22,File23,nx,ny,nz,hx,hy,hz,npd,npi,Km1,icon,epsrho,xi,xf,yi,yf,nthread,Vortex_axis,Lvortex,File9,       &
 Lreal_wave_function,drop_radius, File15, File31, File32, L3Dplot, File41,Lvortex_position_as_a_function_of_z,zv_min,zv_max,&
-L_3D_filter,X_P_filter,Y_P_filter,Z_P_filter,X_N_filter,Y_N_filter,Z_N_filter,denmode
+L_3D_filter,X_P_filter,Y_P_filter,Z_P_filter,X_N_filter,Y_N_filter,Z_N_filter,denmode,nimpFile
 read(5,nml=Input)
 K=npd    ! Km1 will be the number of derivatives for the Taylor expansion
 
@@ -70,6 +70,13 @@ select case (denmode)
 		read(10,*) vimp
 		read(10,*) psi0
 		den0 = Conjg(psi0) * psi0
+		do ix=1,nimp
+			Write(31,'(F9.5,1X,F9.5,1X,F9.5)') rimp(ix,1), rimp(ix,2), rimp(ix,3)
+		enddo
+		Close(31)
+		Open(314,File=nimpFile, buffered='yes')
+		write(314,*) nimp
+		close(314)
 	case (4)
 		read(10,*) xmax0,ymax0,zmax0,hx0,hy0,hz0,nx0,ny0,nz0,ximp,yimp,zimp,vximp,vyimp,vzimp,ninvar
 		Allocate(x0(nx0))
@@ -95,14 +102,6 @@ close(10)
 
 !! HERE STOPS THE WAVE FUNCTION READING
 
-do ix=1,nimp
-	Write(31,'(F9.5,1X,F9.5,1X,F9.5)') rimp(ix,1), rimp(ix,2), rimp(ix,3)
-enddo
-Close(31)
-
-Open(314,File=nimpFile, buffered='yes')
-	write(314,*) nimp
-close(314)
 
 dxyz0=hx0*hy0*hz0
 dxyz=dxyz0
@@ -116,7 +115,7 @@ If(L3Dplot)Then
   Open(Unit=41,File=File41, buffered='yes')      
   If(L_3D_filter)Then
 !
-!  Calcularem la posició del centre de masses
+!  Calcularem la posici? del centre de masses
 !
     xcm=0.0d0
     ycm=0.0d0
@@ -183,3 +182,4 @@ If(L3Dplot)Then
 Endif
 Stop
 End
+
