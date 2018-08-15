@@ -7,6 +7,13 @@
 #source /opt/intel/bin/compilervars.sh intel64 ## Only uncomment on a Mac
 SED=sed			## 'sed' on Linux, 'gsed' on a Mac with Homebrew
 
+USAGE="Usage:		./draw-slurm-chdb.sh <density.NNN.dat> <path/to/he-wfs/> <output-directory/>"
+EXAMPLE="Example:	./draw-slurm-chdb.sh density.005.dat ../he-wfs/ test/"
+[ "$1" = "" ] && echo $USAGE && echo  $EXAMPLE && exit 1
+[ "$2" = "" ] && echo $USAGE && exit 1
+[ "$3" = "" ] && echo $USAGE && exit 1
+
+
 
 DT=0.5
 ID=${1##*density.}	# density.0001.dat => 0001.dat
