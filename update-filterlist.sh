@@ -16,18 +16,18 @@ echo "New filter list created"
 N=$(cat ../he-wfs/filter.txt | wc -l)
 M=$((N+1)) # We need one extra MPI task for the master program that controls the MPI slaves
 echo "${N} entries in filter list + $((M-N)) task for the MPI master task"
-if ((M<180))
+if ((M<324))
 then
-	if ((M%20>0))
+	if ((M%36>0))
 	then
-		sed -i "/^#SBATCH --nodes=/c\#SBATCH --nodes=$((M/20+1))" launch-chdb.slurm
+		sed -i "/^#SBATCH --nodes=/c\#SBATCH --nodes=$((M/36+1))" launch-chdb.slurm
 	else
-		sed -i "/^#SBATCH --nodes=/c\#SBATCH --nodes=$((M/20))" launch-chdb.slurm
+		sed -i "/^#SBATCH --nodes=/c\#SBATCH --nodes=$((M/36))" launch-chdb.slurm
 	fi
 	sed -i "/^#SBATCH --ntasks=/c\#SBATCH --ntasks=${M}" launch-chdb.slurm
 else
 	sed -i "/^#SBATCH --nodes=/c\#SBATCH --nodes=9" launch-chdb.slurm
-	sed -i "/^#SBATCH --ntasks=/c\#SBATCH --ntasks=180" launch-chdb.slurm
+	sed -i "/^#SBATCH --ntasks=/c\#SBATCH --ntasks=324" launch-chdb.slurm
 fi
 echo "'launch-chdb.slurm' updated."
 
